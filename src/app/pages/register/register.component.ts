@@ -7,7 +7,9 @@ import { Component } from '@angular/core';
 })
 export class RegisterComponent {
   signupData = {
-    name: '',
+    firstname: '',
+    lastname: '',
+    phone: '',
     email: '',
     password: ''
   };
