@@ -1,0 +1,52 @@
+<div class="auth-page">
+    <!-- Back to Home -->
+    <a routerLink="/" class="back-link">← Back to Home</a>
+  
+    <!-- Signup Form -->
+    <div class="auth-container">
+      <h1>Create an Account</h1>
+      <form (ngSubmit)="onSignup()" #signupForm="ngForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-control"
+            [(ngModel)]="signupData.name"
+            required
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            [(ngModel)]="signupData.email"
+            required
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            [(ngModel)]="signupData.password"
+            required
+          />
+        </div>
+  
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+      </form>
+  
+      <!-- Redirect to Login -->
+      <p>Already have an account? <a routerLink="/login">Log In</a></p>
+    </div>
+  </div>
+  
