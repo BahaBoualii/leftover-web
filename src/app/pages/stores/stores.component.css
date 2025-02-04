@@ -1,0 +1,113 @@
+.stores-page {
+    max-width: 900px;
+    margin: 50px auto;
+    text-align: center;
+  }
+  
+  h1 {
+    color: #4caf50;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  .search-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .search-bar {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 60%;
+  }
+  
+  .filters {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .filter-dropdown {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .stores-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .store-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.2s;
+  }
+  
+  .store-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .store-logo {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .store-details {
+    padding: 15px;
+  }
+  
+  .store-details h2 {
+    color: #4caf50;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .store-details p {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+  
+  .location {
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  .filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #45a049;
+  }

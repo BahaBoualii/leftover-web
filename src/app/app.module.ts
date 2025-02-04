@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './shared/header/header.component';
 import { SurpriseBagsComponent } from './pages/surprise-bags/surprise-bags.component';
 import { StoresComponent } from './pages/stores/stores.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { ModalComponent } from './shared/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { StoresComponent } from './pages/stores/stores.component';
     LoginComponent,
     HeaderComponent,
     SurpriseBagsComponent,
-    StoresComponent
+    StoresComponent,
+    FooterComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
