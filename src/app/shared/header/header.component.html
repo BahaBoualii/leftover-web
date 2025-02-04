@@ -6,10 +6,33 @@
 
   <!-- Navigation Menu -->
   <nav>
+    <!-- Menu Based on Role -->
+    <a *ngIf="userRole === 'user' || userRole === 'admin'" routerLink="/stores">Stores</a>
+    <a *ngIf="userRole === 'user'" routerLink="/surprise-bags">Surprise Bags</a>
+    <a *ngIf="userRole === 'store_admin'" routerLink="/orders">Orders</a>
 
-      <a routerLink="/stores">Stores</a>
-      <a routerLink="/surprise-bags">Surprise Bags</a>
-    <!-- When User is Not Authenticated -->
+    <!-- Cart (Only for Users) -->
+    <div *ngIf="userRole === 'user'" class="cart-container">
+      <button class="cart-btn" (click)="toggleCart()">🛒 Cart ({{ cart.length }})</button>
+      <div class="cart-dropdown" *ngIf="isCartOpen">
+        <h3>Your Cart</h3>
+        <ul>
+          <li *ngFor="let item of cart">
+            <div class="cart-item">
+              <img [src]="item.image" alt="{{ item.name }}" />
+              <div>
+                <p><strong>{{ item.name }}</strong></p>
+                <p>{{ item.price }} TND</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <p *ngIf="cart.length === 0">Your cart is empty.</p>
+        <button class="checkout-btn" *ngIf="cart.length > 0" (click)="checkout()">Checkout</button>
+      </div>
+    </div>
+
+    <!-- User Authentication -->
     <ng-container *ngIf="!isAuthenticated(); else loggedInMenu">
       <a routerLink="/login">Login</a>
       <a routerLink="/register">Register</a>
@@ -28,30 +51,6 @@
         </div>
       </div>
     </ng-template>
-
-    <!-- Cart Section -->
-    <div class="cart-container">
-      <button class="cart-btn" (click)="toggleCart()">
-        🛒 Cart ({{ cart.length }})
-      </button>
-      <div class="cart-dropdown" *ngIf="isCartOpen">
-        <h3>Your Cart</h3>
-        <ul>
-          <li *ngFor="let item of cart">
-            <div class="cart-item">
-              <img [src]="item.image" alt="{{ item.name }}" />
-              <div>
-                <p><strong>{{ item.name }}</strong></p>
-                <p>{{ item.price }} TND</p>
-              </div>
-            </div>
-          </li>
-        </ul>
-        <p *ngIf="cart.length === 0">Your cart is empty.</p>
-        <button class="checkout-btn" *ngIf="cart.length > 0" (click)="checkout()">
-          Checkout
-        </button>
-      </div>
-    </div>
   </nav>
 </header>
+

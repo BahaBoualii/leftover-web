@@ -12,9 +12,14 @@ export class HeaderComponent {
   isProfileDropdownOpen = false;
   isCartOpen = false;
   cart: any[] = [];
+  userRole: string = '';
+
+  ngOnInit(): void {
+    this.userRole = this.authService.getUserRole(); // Assume this method exists
+  }
 
   isAuthenticated(): boolean {
-    return this.authService.isAuthenticated();
+    return this.authService.isLoggedIn();
   }
 
   toggleProfileDropdown(event: Event): void {
@@ -26,7 +31,7 @@ export class HeaderComponent {
   @HostListener('document:click', ['$event'])
   closeDropdowns(event: Event): void {
     const target = event.target as HTMLElement;
-
+    
     if (!target.closest('.dropdown-btn') && !target.closest('.dropdown-menu')) {
       this.isProfileDropdownOpen = false;
     }
@@ -42,8 +47,7 @@ export class HeaderComponent {
   }
 
   logout(): void {
-    alert('You have been logged out.');
-    this.isProfileDropdownOpen = false;
+    this.authService.performLogout();
   }
 
   checkout(): void {
@@ -56,4 +60,6 @@ export class HeaderComponent {
     this.cart.push(item);
     alert(`${item.name} added to the cart.`);
   }
+
+ 
 }
