@@ -1,26 +1,57 @@
 <header class="header">
-    <div class="logo">
-      <img src="assets/logo.png" alt="App Logo" />
-    </div>
-  
-    <nav>
-      <ng-container *ngIf="!isAuthenticated(); else loggedInMenu">
-        <a routerLink="/login">Login</a>
-        <a routerLink="/register">Register</a>
-      </ng-container>
-  
-      <ng-template #loggedInMenu>
-        <div class="dropdown">
-          <button class="dropdown-btn">
-            <img src="assets/user.png" width="40" height="40" alt="Profile" />
-          </button>
-          <div class="dropdown-menu">
-            <a routerLink="/profile">Profile Management</a>
-            <a routerLink="/settings">Settings</a>
-            <a (click)="logout()">Logout</a>
-          </div>
+  <!-- Logo Section -->
+  <div class="logo">
+    <img src="assets/logo.png" alt="App Logo" />
+  </div>
+
+  <!-- Navigation Menu -->
+  <nav>
+
+      <a routerLink="/stores">Stores</a>
+      <a routerLink="/surprise-bags">Surprise Bags</a>
+    <!-- When User is Not Authenticated -->
+    <ng-container *ngIf="!isAuthenticated(); else loggedInMenu">
+      <a routerLink="/login">Login</a>
+      <a routerLink="/register">Register</a>
+    </ng-container>
+
+    <!-- When User is Authenticated -->
+    <ng-template #loggedInMenu>
+      <div class="dropdown profile-container">
+        <button class="dropdown-btn" (click)="toggleProfileDropdown($event)">
+          <img src="assets/user.png" width="40" height="40" alt="Profile" />
+        </button>
+        <div class="dropdown-menu" *ngIf="isProfileDropdownOpen">
+          <a routerLink="/profile">Profile Management</a>
+          <a routerLink="/settings">Settings</a>
+          <a (click)="logout()">Logout</a>
         </div>
-      </ng-template>
-    </nav>
-  </header>
-  
+      </div>
+    </ng-template>
+
+    <!-- Cart Section -->
+    <div class="cart-container">
+      <button class="cart-btn" (click)="toggleCart()">
+        🛒 Cart ({{ cart.length }})
+      </button>
+      <div class="cart-dropdown" *ngIf="isCartOpen">
+        <h3>Your Cart</h3>
+        <ul>
+          <li *ngFor="let item of cart">
+            <div class="cart-item">
+              <img [src]="item.image" alt="{{ item.name }}" />
+              <div>
+                <p><strong>{{ item.name }}</strong></p>
+                <p>{{ item.price }} TND</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <p *ngIf="cart.length === 0">Your cart is empty.</p>
+        <button class="checkout-btn" *ngIf="cart.length > 0" (click)="checkout()">
+          Checkout
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>

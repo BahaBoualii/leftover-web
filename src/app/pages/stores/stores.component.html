@@ -1,6 +1,76 @@
-<div class="page">
-    <h1>Stores</h1>
-    <p>Find stores near you that offer surplus food deals.</p>
-    <!-- Add your list of stores here -->
+<div class="stores-page">
+  <h1>Stores</h1>
+  <p>Explore stores near you offering surplus food deals.</p>
+
+  <!-- Search, Filters, and Sorting -->
+  <div class="search-filters">
+    <!-- Search Bar -->
+    <input
+      type="text"
+      placeholder="Search for stores..."
+      [(ngModel)]="searchQuery"
+      class="search-bar"
+    />
+
+    <!-- Filters -->
+    <div class="filters">
+      <select [(ngModel)]="selectedCategory" class="filter-dropdown">
+        <option value="" disabled selected>Filter by Category</option>
+        <option *ngFor="let category of categories" [value]="category">
+          {{ category }}
+        </option>
+      </select>
+
+      <select [(ngModel)]="selectedLocation" class="filter-dropdown">
+        <option value="" disabled selected>Filter by Location</option>
+        <option *ngFor="let location of locations" [value]="location">
+          {{ location }}
+        </option>
+      </select>
+
+      <!-- Sorting Dropdown -->
+      <select [(ngModel)]="selectedSort" class="filter-dropdown">
+        <option value="" disabled selected>Sort by</option>
+        <option value="nameAsc">Name (A-Z)</option>
+        <option value="nameDesc">Name (Z-A)</option>
+        <option value="category">Category</option>
+        <option value="location">Location</option>
+      </select>
+    </div>
   </div>
-  
+
+  <!-- Stores List -->
+  <div class="stores-list">
+    <div
+      class="store-card"
+      *ngFor="let store of sortedStores()"
+    >
+      <img [src]="store.logo" alt="{{ store.name }}" class="store-logo" />
+      <div class="store-details">
+        <h2>{{ store.name }}</h2>
+        <p>{{ store.description }}</p>
+        <p class="location"><strong>Location:</strong> {{ store.location }}</p>
+        <button class="btn btn-primary" (click)="showStoreDetails(store)">
+          View Details
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Store Details Modal -->
+  <app-modal *ngIf="selectedStore" (close)="closeStoreDetails()">
+    <h2>{{ selectedStore.name }}</h2>
+    <p>{{ selectedStore.description }}</p>
+    <p><strong>Location:</strong> {{ selectedStore.location }}</p>
+    <p><strong>Contact:</strong> {{ selectedStore.contact }}</p>
+    <p><strong>Working Hours:</strong> {{ selectedStore.workingHours }}</p>
+
+    <!-- Surprise Bags Offered -->
+    <h3>Surprise Bags</h3>
+    <ul>
+      <li *ngFor="let bag of selectedStore.surpriseBags">
+        {{ bag.name }} - {{ bag.price }} TND
+      </li>
+    </ul>
+  </app-modal>
+</div>

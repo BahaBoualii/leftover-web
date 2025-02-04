@@ -1,6 +1,66 @@
-<div class="page">
-    <h1>Surprise Bags</h1>
-    <p>Discover amazing deals on surplus food near you!</p>
-    <!-- Add your list of surprise bags here -->
+<div class="surprise-bags-page">
+  <h1>Surprise Bags</h1>
+  <p>Find amazing deals on surplus food from your favorite stores.</p>
+
+  <!-- Search, Filters, and Sorting -->
+  <div class="search-filters">
+    <!-- Search Bar -->
+    <input
+      type="text"
+      placeholder="Search for surprise bags..."
+      [(ngModel)]="searchQuery"
+      class="search-bar"
+    />
+
+    <!-- Filters -->
+    <div class="filters">
+      <select [(ngModel)]="selectedCategory" class="filter-dropdown">
+        <option value="" disabled selected>Filter by Category</option>
+        <option *ngFor="let category of categories" [value]="category">
+          {{ category }}
+        </option>
+      </select>
+
+      <!-- Sorting Dropdown -->
+      <select [(ngModel)]="selectedSort" class="filter-dropdown">
+        <option value="" disabled selected>Sort by</option>
+        <option value="priceLowToHigh">Price: Low to High</option>
+        <option value="priceHighToLow">Price: High to Low</option>
+        <option value="nameAsc">Name (A-Z)</option>
+        <option value="nameDesc">Name (Z-A)</option>
+      </select>
+    </div>
   </div>
-  
+
+  <!-- Surprise Bags List -->
+  <div class="bags-list">
+    <div
+      class="bag-card"
+      *ngFor="let bag of sortedBags()"
+    >
+      <img [src]="bag.image" alt="{{ bag.name }}" class="bag-image" />
+      <div class="bag-details">
+        <h2>{{ bag.name }}</h2>
+        <p>{{ bag.description }}</p>
+        <p><strong>Price:</strong> {{ bag.price }} TND</p>
+        <p><strong>Availability:</strong> {{ bag.availability }} left</p>
+        <button class="btn btn-primary" (click)="showBagDetails(bag)">
+          View Details
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Surprise Bag Details Modal -->
+  <app-modal *ngIf="selectedBag" (close)="closeBagDetails()">
+    <h2>{{ selectedBag.name }}</h2>
+    <p>{{ selectedBag.description }}</p>
+    <p><strong>Price:</strong> {{ selectedBag.price }} TND</p>
+    <p><strong>Availability:</strong> {{ selectedBag.availability }}</p>
+    <p><strong>Store:</strong> {{ selectedBag.store }}</p>
+    <p><strong>Expires:</strong> {{ selectedBag.expires }}</p>
+    <button class="btn btn-primary" (click)="reserveBag(selectedBag)">
+      Reserve Now
+    </button>
+  </app-modal>
+</div>
