@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @HostListener('document:click', ['$event'])
   closeDropdowns(event: Event): void {
     const target = event.target as HTMLElement;
-    
+
     if (!target.closest('.dropdown-btn') && !target.closest('.dropdown-menu')) {
       this.isProfileDropdownOpen = false;
     }
@@ -83,6 +83,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.cart.push(item);
     alert(`${item.name} added to the cart.`);
   }
+
  
 }
 
