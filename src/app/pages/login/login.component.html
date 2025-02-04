@@ -1,49 +1,66 @@
+<!-- login.component.html -->
 <div class="auth-page">
-    <!-- Back to Home -->
-    <a routerLink="/" class="back-link">← Back to Home</a>
-  
-    <!-- Login Form -->
-    <div class="auth-container">
-      <h1>Welcome Back</h1>
-      <form (ngSubmit)="onLogin()" #loginForm="ngForm" novalidate>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="form-control"
-            [(ngModel)]="loginData.email"
-            #email="ngModel"
-            required
-            email
-          />
-          <div *ngIf="email.invalid && email.touched" class="error">
-            A valid email is required.
-          </div>
-        </div>
-  
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            class="form-control"
-            [(ngModel)]="loginData.password"
-            #password="ngModel"
-            required
-          />
-          <div *ngIf="password.invalid && password.touched" class="error">
-            Password is required.
-          </div>
-        </div>
-  
-        <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Log In</button>
-      </form>
-  
-      <!-- Redirect to Signup -->
-      <p>Don't have an account? <a routerLink="/register">Sign Up</a></p>
+  <!-- Back to Home -->
+  <a routerLink="/" class="back-link">← Back to Home</a>
+
+  <!-- Login Form -->
+  <div class="auth-container">
+    <h1>Welcome Back</h1>
+    
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
     </div>
+
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm" novalidate>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-control"
+          [(ngModel)]="loginData.email"
+          #email="ngModel"
+          required
+          email
+          [class.is-invalid]="email.invalid && email.touched"
+        />
+        <div *ngIf="email.invalid && email.touched" class="invalid-feedback">
+          <div *ngIf="email.errors?.['required']">Email is required</div>
+          <div *ngIf="email.errors?.['email']">Please enter a valid email</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="form-control"
+          [(ngModel)]="loginData.password"
+          #password="ngModel"
+          required
+          [class.is-invalid]="password.invalid && password.touched"
+        />
+        <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
+          Password is required
+        </div>
+      </div>
+
+      <button 
+        type="submit" 
+        class="btn btn-primary w-100" 
+        [disabled]="loginForm.invalid || isLoading">
+        <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+        {{ isLoading ? 'Logging in...' : 'Log In' }}
+      </button>
+    </form>
+
+    <!-- Sign up link -->
+    <p class="mt-3 text-center">
+      Don't have an account? <a routerLink="/register">Sign Up</a>
+    </p>
   </div>
-  
+</div>

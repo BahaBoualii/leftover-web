@@ -12,6 +12,7 @@ import { SurpriseBagsComponent } from './pages/surprise-bags/surprise-bags.compo
 import { StoresComponent } from './pages/stores/stores.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ModalComponent } from './shared/modal/modal.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ModalComponent } from './shared/modal/modal.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule
   ],
   providers: [],
