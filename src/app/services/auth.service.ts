@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { EMPTY, Observable } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { LoginResponse } from '../models/auth.model';
 import { Router } from '@angular/router';
@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
+  private authChangedSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
+  authChanged = this.authChangedSubject.asObservable();
   private readonly apiUrl ='http://localhost:3000';
 
   constructor(private readonly http: HttpClient , private readonly router: Router) {}
@@ -19,6 +21,7 @@ export class AuthService {
         tap(response => {
           localStorage.setItem('token', response.access_token);
           localStorage.setItem('user', JSON.stringify(response.user));
+          this.authChangedSubject.next(true);
         })
       );
   }
@@ -73,11 +76,13 @@ export class AuthService {
       next: () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        this.router.navigate(['/login']);
+        this.authChangedSubject.next(false);
+ 
       },
       error: () => {
-        // Fallback logout handling
         localStorage.clear();
+      },
+      complete: () => {
         this.router.navigate(['/login']);
       }
     });
