@@ -1,32 +1,52 @@
 <div class="landing-page">
-  
-    <!-- Hero Section -->
-    <section class="hero">
-      <img src="assets/logo-wide.png" alt="App Logo Wide" width="1200" height="400" />      
-      <br>
-      <br>
-      <br>
-      <br>
-      <h2>Save Food, Save Money, Save the Planet</h2>
-      <p>Join our mission to reduce food waste and find amazing deals near you.</p>
-      <button routerLink="/signup" class="cta-button">Get Started</button>
-    </section>
-  
-    <!-- Features Section -->
-    <section class="features">
-      <h3>Why Use Our App?</h3>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <a routerLink="/"><img src="assets/logo-wide.png" alt="App Logo Wide" class="logo" /></a>      
+    <h2>Save Food, Save Money, Save the Planet</h2>
+    <p>Join our mission to reduce food waste and find amazing deals near you.</p>
+
+    <div class="cta-buttons">
+      <button routerLink="/register" class="cta-button customer">Get Started as a Customer</button>
+      <button routerLink="/store/register" class="cta-button store-owner">Get Started as a Store Owner</button>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <h3>Why Use Our App?</h3>
+    <div class="features-grid">
       <div class="feature">
+        <img src="assets/apple.png" alt="Food Icon" />
         <h4>Find Surplus Food</h4>
         <p>Discover food deals from local businesses near you.</p>
       </div>
       <div class="feature">
+        <img src="assets/money-bag.png" alt="Money Icon" />
         <h4>Save Money</h4>
-        <p>Buy surplus food at discounted prices.</p>
+        <p>Buy surplus food at discounted prices and enjoy great savings.</p>
       </div>
       <div class="feature">
+        <img src="assets/biodegradable.png" alt="Eco Icon" />
         <h4>Reduce Waste</h4>
         <p>Be part of a sustainable future by reducing food waste.</p>
       </div>
-    </section>
-  </div>
-  
+      <div class="feature">
+        <img src="assets/partners.png" alt="Community Icon" />
+        <h4>Support Local Businesses</h4>
+        <p>Help small businesses sell their surplus food instead of wasting it.</p>
+      </div>
+      <div class="feature">
+        <img src="assets/snap.png" alt="Easy Use Icon" />
+        <h4>Easy to Use</h4>
+        <p>Seamless browsing and purchasing experience with just a few clicks.</p>
+      </div>
+      <div class="feature">
+        <img src="assets/shield.png" alt="Secure Icon" />
+        <h4>Secure Payments</h4>
+        <p>Pay securely through trusted payment methods.</p>
+      </div>
+    </div>
+  </section>
+
+</div>

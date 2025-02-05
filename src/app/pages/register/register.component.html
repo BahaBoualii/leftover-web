@@ -13,7 +13,7 @@
             id="firstname"
             name="firstname"
             class="form-control"
-            [(ngModel)]="signupData.firstname"
+            [(ngModel)]="signupData.firstName"
             #firstname="ngModel"
             required
           />
@@ -29,7 +29,7 @@
             id="lastname"
             name="lastname"
             class="form-control"
-            [(ngModel)]="signupData.lastname"
+            [(ngModel)]="signupData.lastName"
             #lastname="ngModel"
             required
           />
@@ -45,7 +45,7 @@
             id="phone"
             name="phone"
             class="form-control"
-            [(ngModel)]="signupData.phone"
+            [(ngModel)]="signupData.phoneNumber"
             #phone="ngModel"
             required
             pattern="^[0-9]{8,15}$"

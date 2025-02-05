@@ -1,0 +1,39 @@
+<div class="surprise-bags-section">
+    <h2>Manage Surprise Bags</h2>
+  
+    <!-- Filters & Sorting -->
+    <div class="filters">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="🔍 Search by name..." class="search-input" />
+      
+      <select [(ngModel)]="sortBy" class="sort-dropdown">
+        <option value="name">Sort by Name</option>
+        <option value="price">Sort by Price</option>
+        <option value="availability">Sort by Availability</option>
+      </select>
+  
+      <button (click)="addBag()" class="add-btn">+ Add Surprise Bag</button>
+    </div>
+  
+    <!-- List of Surprise Bags (Card Layout) -->
+    <div class="bag-list">
+      <div class="bag-card" *ngFor="let bag of filteredBags()">
+        <h3>{{ bag.name }}</h3>
+        <p><strong>Price:</strong> TND {{ bag.price }}</p>
+        <p>
+          <strong>Status:</strong> 
+          <span [ngClass]="{ 'available': bag.available, 'not-available': !bag.available }">
+            {{ bag.available ? 'Available' : 'Unavailable' }}
+          </span>
+        </p>
+  
+        <div class="card-buttons">
+          <button class="edit-btn" (click)="editBag(bag.id)">✏️ Edit</button>
+          <button class="delete-btn" (click)="deleteBag(bag.id)">🗑 Delete</button>
+          <button class="toggle-btn" (click)="toggleAvailability(bag.id)">
+            {{ bag.available ? '🔴 Deactivate' : '🟢 Activate' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

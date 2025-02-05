@@ -13,6 +13,9 @@ import { StoresComponent } from './pages/stores/stores.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ModalComponent } from './shared/modal/modal.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreDashboardComponent } from './store-admin/store-dashboard/store-dashboard.component';
+import { BagsComponent } from './store-admin/bags/bags.component';
+import { StoreRegistrationComponent } from './store-registration/store-registration.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,11 @@ import { HttpClientModule } from '@angular/common/http';
     SurpriseBagsComponent,
     StoresComponent,
     FooterComponent,
-    ModalComponent
+    ModalComponent,
+    StoreDashboardComponent,
+    StoreDashboardComponent,
+    BagsComponent,
+    StoreRegistrationComponent
   ],
   imports: [
     BrowserModule,
