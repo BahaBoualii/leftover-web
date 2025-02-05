@@ -7,6 +7,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { StoresComponent } from './pages/stores/stores.component';
 import { SurpriseBagsComponent } from './pages/surprise-bags/surprise-bags.component';
 import { RoleGuard } from './shared/guards/auth.guard';
+import { StoreDashboardComponent } from './store-admin/store-dashboard/store-dashboard.component';
+import { BagsComponent } from './store-admin/bags/bags.component';
+import { StoreRegistrationComponent } from './store-registration/store-registration.component';
 
 const routes: Routes = [
   { path: '',
@@ -18,6 +21,7 @@ const routes: Routes = [
   { path: 'login', 
     component:LoginComponent
   },
+  { path: 'store/register', component: StoreRegistrationComponent },
   { 
     path: 'admin/dashboard', 
     //to be changed
@@ -28,15 +32,22 @@ const routes: Routes = [
   { 
     path: 'store-admin/dashboard', 
     //to be changed 
-    component: LandingComponent,
-    canActivate: [RoleGuard],
-    data: { expectedRole: 'store_admin' }
+    component: StoreDashboardComponent,
+    //canActivate: [RoleGuard],
+    //data: { expectedRole: 'store_admin' }
+  },
+  { 
+    path: 'store-admin/bags', 
+    //to be changed 
+    component: BagsComponent,
+    //canActivate: [RoleGuard],
+    //data: { expectedRole: 'store_admin' }
   },
   { 
     path: 'stores', 
     component: StoresComponent,
-    canActivate: [RoleGuard],
-    data: { expectedRole: 'user' }
+    // canActivate: [RoleGuard],
+    // data: { expectedRole: 'user' }
   },
   { path: 'surprise-bags', 
     component: SurpriseBagsComponent

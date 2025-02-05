@@ -1,104 +1,100 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .landing-page {
-    text-align: center;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #4caf50;
-    color: white;
-  }
-  
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .logo img {
-    height: 40px;
-  }
-  
-  nav a {
-    color: white;
-    margin: 0 10px;
-    text-decoration: none;
-  }
-  
-  nav a:hover {
-    text-decoration: underline;
-  }
-  
-  .hero {
-    background-color: #f9f9f9;
-    padding: 50px 20px;
-  }
-  
-  .hero h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .hero p {
-    font-size: 1.2rem;
-    color: #666;
-    margin-bottom: 20px;
-  }
-  
-  .cta-button {
-    background-color: #4caf50;
-    color: white;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  .cta-button:hover {
-    background-color: #45a049;
-  }
-  
-  .features {
-    padding: 40px 20px;
-    background-color: #ffffff;
-  }
-  
-  .features h3 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-  }
-  
-  .feature {
-    margin: 20px 0;
-  }
-  
-  .feature h4 {
-    font-size: 1.5rem;
-    color: #4caf50;
-  }
-  
-  footer {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-  }
-  
-  footer a {
-    color: #4caf50;
-    text-decoration: none;
-  }
-  
-  footer a:hover {
-    text-decoration: underline;
-  }
-  
+.landing-page {
+  text-align: center;
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin-top: 20px;
+  color: #333;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #666;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between buttons */
+  margin-top: 20px;
+}
+
+.cta-button {
+  padding: 14px 28px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: transform 0.2s ease-in-out;
+}
+
+.customer {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.store-owner {
+  background-color: #FFA500; /* Orange */
+  color: white;
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+}
+
+.features {
+  margin-top: 60px;
+}
+
+.features h3 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  text-align: center;
+}
+
+.feature {
+  background: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.feature:hover {
+  transform: scale(1.05);
+}
+
+.feature img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 15px;
+}
+
+.feature h4 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.feature p {
+  font-size: 1.1rem;
+  color: #666;
+}

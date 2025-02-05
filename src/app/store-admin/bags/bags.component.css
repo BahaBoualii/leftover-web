@@ -1,0 +1,109 @@
+/* Full-height layout */
+.surprise-bags-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    background-color: #ffffff;
+  }
+  
+  /* Filters Section */
+  .filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+  
+  /* Input & Select Styling */
+  .search-input, .sort-dropdown {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Add Button */
+  .add-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  /* Bag List Grid */
+  .bag-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+    justify-content: center;
+  }
+  
+  /* Bag Cards */
+  .bag-card {
+    background: #f8f8f8;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 250px; /* Fixed width */
+    height: 320px; /* Fixed height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Status Colors */
+  .available {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .not-available {
+    color: red;
+    font-weight: bold;
+  }
+  
+  /* Action Buttons */
+  .card-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  /* Buttons */
+  button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  /* Button Colors */
+  .edit-btn {
+    background-color: #FFA500;
+    color: white;
+  }
+  
+  .delete-btn {
+    background-color: #FF5733;
+    color: white;
+  }
+  
+  .toggle-btn {
+    background-color: #007BFF;
+    color: white;
+  }
+  

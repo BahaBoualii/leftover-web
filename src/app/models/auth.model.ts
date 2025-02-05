@@ -1,4 +1,3 @@
-// models/auth.model.ts
 export interface LoginResponse {
     access_token: string;
     user: {
@@ -7,3 +6,13 @@ export interface LoginResponse {
       role: string;
     };
   }
+
+  export interface RegisterRequest {
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+    email: string;
+    password: string;
+    role: string;
+  }
+  

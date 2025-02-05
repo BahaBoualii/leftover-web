@@ -13,7 +13,7 @@ export class LoginComponent {
     password: ''
   };
   errorMessage = '';
-  isLoading = false;  // Add this property
+  isLoading = false; 
 
   constructor(
     private authService: AuthService, 
@@ -21,7 +21,7 @@ export class LoginComponent {
   ) {}
 
   onLogin(): void {
-    this.isLoading = true;  // Set loading state when login starts
+    this.isLoading = true;
     this.errorMessage = '';
 
     this.authService.login(this.loginData).subscribe({
