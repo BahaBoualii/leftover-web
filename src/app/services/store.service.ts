@@ -13,6 +13,9 @@ export class StoresService {
   constructor(private http: HttpClient) {}
 
   getAllStores(): Observable<Store[]> {
-    return this.http.get<Store[]>(`${this.apiUrl}/stores`);
+    const token = localStorage.getItem('token');
+    const headers = { Authorization: `Bearer ${token}` };
+    const stores= this.http.get<Store[]>(`${this.apiUrl}/store` , { headers });
+    return stores;
   }
 }
