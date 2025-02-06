@@ -4,7 +4,9 @@ import { StoresService } from 'src/app/services/store.service';
 
 @Component({
   selector: 'app-stores',
-  templateUrl: './stores.component.html'
+  templateUrl: './stores.component.html',
+  styleUrls: ['./stores.component.css'],
+
 })
 export class StoresComponent implements OnInit {
   stores: Store[] = [];
