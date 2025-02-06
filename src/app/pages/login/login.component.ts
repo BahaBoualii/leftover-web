@@ -26,7 +26,9 @@ export class LoginComponent {
 
     this.authService.login(this.loginData).subscribe({
       next: (response) => {
-        this.handleLoginSuccess(response.user.role);
+        console.log(response);
+        this.handleLoginSuccess(response.user.roles);
+        console.log(response.user.roles);
       },
       error: (error) => {
         this.errorMessage = error.error?.message || 'Login failed. Please try again.';
@@ -39,7 +41,8 @@ export class LoginComponent {
   }
 
   private handleLoginSuccess(role: string): void {
-    switch(role.toLowerCase()) {
+    console.log("role is: ", role); 
+    switch(role) {
       case 'admin':
         this.router.navigate(['/admin/dashboard']);
         break;

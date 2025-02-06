@@ -1,3 +1,4 @@
+
 <div class="stores-page">
   <h1>Stores</h1>
   <p>Explore stores near you offering surplus food deals.</p>
@@ -14,7 +15,7 @@
 
     <!-- Filters -->
     <div class="filters">
-      <select [(ngModel)]="selectedCategory" class="filter-dropdown">
+      <select [(ngModel)]="storeCategory" class="filter-dropdown">
         <option value="" disabled selected>Filter by Category</option>
         <option *ngFor="let category of categories" [value]="category">
           {{ category }}
@@ -45,11 +46,11 @@
       class="store-card"
       *ngFor="let store of sortedStores()"
     >
-      <img [src]="store.logo" alt="{{ store.name }}" class="store-logo" />
+      <img [src]="store.photoUrl" alt="{{store.storeName}}" class="store-logo" />
       <div class="store-details">
-        <h2>{{ store.name }}</h2>
+        <h2>{{store.storeName}}</h2>
         <p>{{ store.description }}</p>
-        <p class="location"><strong>Location:</strong> {{ store.location }}</p>
+        <p class="location"><strong>Location:</strong> {{ store.location.city }}</p>
         <button class="btn btn-primary" (click)="showStoreDetails(store)">
           View Details
         </button>
@@ -59,17 +60,17 @@
 
   <!-- Store Details Modal -->
   <app-modal *ngIf="selectedStore" (close)="closeStoreDetails()">
-    <h2>{{ selectedStore.name }}</h2>
+    <h2>{{ selectedStore.storeName }}</h2>
     <p>{{ selectedStore.description }}</p>
-    <p><strong>Location:</strong> {{ selectedStore.location }}</p>
-    <p><strong>Contact:</strong> {{ selectedStore.contact }}</p>
-    <p><strong>Working Hours:</strong> {{ selectedStore.workingHours }}</p>
+    <p><strong>Location:</strong> {{ selectedStore.location.city }}</p>
+    <p><strong>Owner:</strong> {{ selectedStore.owner.email }}</p>
+
 
     <!-- Surprise Bags Offered -->
     <h3>Surprise Bags</h3>
     <ul>
-      <li *ngFor="let bag of selectedStore.surpriseBags">
-        {{ bag.name }} - {{ bag.price }} TND
+      <li *ngFor="let bag of selectedStore.activeBags">
+        {{ bag.name }} - {{ bag.originalValue}} TND
       </li>
     </ul>
   </app-modal>
