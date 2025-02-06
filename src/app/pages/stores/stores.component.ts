@@ -1,85 +1,90 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store, StoreCategory } from 'src/app/models/store.model';
+import { StoresService } from 'src/app/services/store.service';
 
 @Component({
   selector: 'app-stores',
-  templateUrl: './stores.component.html',
-  styleUrls: ['./stores.component.css']
+  templateUrl: './stores.component.html'
 })
-export class StoresComponent {
+export class StoresComponent implements OnInit {
+  stores: Store[] = [];
   searchQuery = '';
   selectedCategory = '';
   selectedLocation = '';
   selectedSort = '';
-  selectedStore: any = null;
+  selectedStore: Store | null = null; 
+  storeCategory = ''; 
 
-  categories = ['Bakery', 'Grocery', 'Restaurant', 'Cafe'];
-  locations = ['Tunis', 'Sousse', 'Sfax', 'Hammamet'];
+  categories = Object.values(StoreCategory);
+  locations: string[] = [];
 
-  stores = [
-    {
-      name: 'Fresh Bakery',
-      description: 'Freshly baked bread and pastries daily.',
-      location: 'Tunis',
-      category: 'Bakery',
-      contact: '+216 123 456 789',
-      workingHours: '7:00 AM - 8:00 PM',
-      logo: 'assets/store.png',
-      surpriseBags: [
-        { name: 'Morning Delight', price: 12 },
-        { name: 'Evening Special', price: 15 }
-      ]
-    },
-    {
-      name: 'Green Grocers',
-      description: 'Organic fruits and vegetables at great prices.',
-      location: 'Sousse',
-      category: 'Grocery',
-      contact: '+216 987 654 321',
-      workingHours: '8:00 AM - 9:00 PM',
-      logo: 'assets/store.png',
-      surpriseBags: [
-        { name: 'Veggie Bag', price: 10 },
-        { name: 'Fruit Basket', price: 8 }
-      ]
-    }
-  ];
+  
+  constructor(private storesService: StoresService) {}
 
-  filteredStores() {
-    return this.stores.filter((store) => {
-      const matchesSearch = store.name
-        .toLowerCase()
-        .includes(this.searchQuery.toLowerCase());
-      const matchesCategory =
-        !this.selectedCategory || store.category === this.selectedCategory;
-      const matchesLocation =
-        !this.selectedLocation || store.location === this.selectedLocation;
+  ngOnInit() {
+    this.loadStores();
+  }
 
-      return matchesSearch && matchesCategory && matchesLocation;
+  private loadStores() {
+    this.storesService.getAllStores().subscribe({
+      next: (data) => {
+        this.stores = data;
+        this.populateLocations();
+      },
+      error: (error) => {
+        console.error('Error fetching stores:', error);
+      }
     });
   }
 
-  sortedStores() {
-    const stores = this.filteredStores();
+  sortedStores(): Store[] {
+    let filteredStores = this.stores;
+    
+    // Apply search
+    if (this.searchQuery) {
+      filteredStores = filteredStores.filter(store => 
+        store.storeName.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    }
 
+    // Apply category filter
+    if (this.selectedCategory) {
+      filteredStores = filteredStores.filter(store => 
+        store.category === this.selectedCategory
+      );
+    }
+
+    // Apply location filter
+    if (this.selectedLocation) {
+      filteredStores = filteredStores.filter(store => 
+        store.location.city === this.selectedLocation
+      );
+    }
+
+    // Apply sorting
     switch (this.selectedSort) {
       case 'nameAsc':
-        return stores.sort((a, b) => a.name.localeCompare(b.name));
+        return filteredStores.sort((a, b) => a.storeName.localeCompare(b.storeName));
       case 'nameDesc':
-        return stores.sort((a, b) => b.name.localeCompare(a.name));
+        return filteredStores.sort((a, b) => b.storeName.localeCompare(a.storeName));
       case 'category':
-        return stores.sort((a, b) => a.category.localeCompare(b.category));
+        return filteredStores.sort((a, b) => a.category.localeCompare(b.category));
       case 'location':
-        return stores.sort((a, b) => a.location.localeCompare(b.location));
+        return filteredStores.sort((a, b) => a.location.city.localeCompare(b.location.city));
       default:
-        return stores;
+        return filteredStores;
     }
   }
 
-  showStoreDetails(store: any): void {
+  showStoreDetails(store: Store) {
     this.selectedStore = store;
   }
 
-  closeStoreDetails(): void {
+  closeStoreDetails() {
     this.selectedStore = null;
+  }
+
+  private populateLocations() {
+    this.locations = [...new Set(this.stores.map(store => store.location.city))];
   }
 }
